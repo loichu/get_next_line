@@ -6,6 +6,7 @@
 
 typedef struct	s_line  {
 	char	*text;
+	int	offset;
 	int	size;
 }	t_line;
 
@@ -19,6 +20,7 @@ t_line	*init_line ()
 	line->size = 0;
 	line->text = (char *)malloc(sizeof(char));
 	*(line->text) = '\0';
+	line->offset = 0;
 	return (line);
 }
 
@@ -57,10 +59,16 @@ void	append_char(t_line *line, char c)
 		return ;
 	i = -1;
 	while (++i < (line->size - 1))
+	{
 		new_text[i] = line->text[i];
+	}
 	new_text[i] = c;
 	//printf("new_text: %s\n\n", new_text);
-	free(line->text);
+	//write(1, line->text, 1);
+	//printf("%p\n", line->text);
+	free(line->text - line->offset);
+	line->offset = 0;
+	//printf("test\n");
 	line->text = new_text;
 	//putline(line);
 }
@@ -86,24 +94,34 @@ char	*get_curr_line(t_line *line)
 	char	*ret;
 
 	i = -1;
+	//printf("%i\n", line->size);
 	while (++i < line->size)
 	{
+		//printf("%x\n", line);
 		if (line->text[i] == '\n')
 			break ;
 	}
+	//printf("out loop\n");
 	if (i == line->size)
 		return (NULL);
-	ret = (char *)malloc(i * sizeof(char));
+	//printf("found \\n\n");
+	ret = (char *)malloc((i + 1) * sizeof(char));
 	if (!ret)
 		return (NULL);
-	printf("i: %i\n", i);
+	//printf("i: %i\n", i);
 	j = i;
 	while (i + 1)
 	{
-		printf("\n%c\n", line->text[0]);
-		ret[j - i] = line->text[0];
+		//printf("while %i\n", j - i);
+		//printf("\n%c\n", line->text[0]);
+		ret[j - i--] = line->text[0];
 		line->text++;
+		line->size--;
+		line->offset++;
 	}
+	//line->text--;
+	//if (line->size == 0)
+	//	free_line(line);
 	return (ret);
 }
 
