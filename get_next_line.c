@@ -97,8 +97,8 @@ char	*get_curr_line(t_line *line)
 	if (!ret)
 		return (NULL);
 	printf("i: %i\n", i);
-	j = i - 1;
-	while (i--)
+	j = i;
+	while (i + 1)
 	{
 		printf("\n%c\n", line->text[0]);
 		ret[j - i] = line->text[0];
