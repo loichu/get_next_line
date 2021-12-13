@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	char		*line;
 	int		line_cnt;
 	static int	line_nb;
-	//int	bcnt;
 
 	if (argc == 1)
 		fd = 0;
@@ -33,13 +32,6 @@ int	main(int argc, char **argv)
 		line = get_next_line(fd);
 		putline(line);
 		free(line);
-		//printf("%s", get_next_line(fd));
 	}
-	//buf = get_next_line(fd);
-	//bcnt = BUFFER_SIZE;
-	//while (bcnt--)
-	//{
-	//	write(1, buf++, 1);
-	//}
 	return (0);
 }

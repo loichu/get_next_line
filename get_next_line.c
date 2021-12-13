@@ -36,16 +36,6 @@ t_line	*renew_line (t_line *old_line)
 	return (init_line());
 }
 
-//static void	putline(t_line *line)
-//{
-//	int	i;
-//
-//	i = -1;
-//	while (++i < line->size)
-//		write(1, &(line->text[i]), 1);
-//	printf("\n");
-//}
-
 void	append_char(t_line *line, char c)
 {
 	char	*new_text;
@@ -53,8 +43,6 @@ void	append_char(t_line *line, char c)
 
 	line->size++;
 	new_text = (char *)malloc(line->size * sizeof(char));
-	//printf("Appened char: %c\n", c);
-	//printf("Line size: %i\n", line->size);
 	if (!new_text)
 		return ;
 	i = -1;
@@ -63,14 +51,9 @@ void	append_char(t_line *line, char c)
 		new_text[i] = line->text[i];
 	}
 	new_text[i] = c;
-	//printf("new_text: %s\n\n", new_text);
-	//write(1, line->text, 1);
-	//printf("%p\n", line->text);
 	free(line->text - line->offset);
 	line->offset = 0;
-	//printf("test\n");
 	line->text = new_text;
-	//putline(line);
 }
 
 char	*cpytext(t_line *line)
@@ -94,34 +77,24 @@ char	*get_curr_line(t_line *line)
 	char	*ret;
 
 	i = -1;
-	//printf("%i\n", line->size);
 	while (++i < line->size)
 	{
-		//printf("%x\n", line);
 		if (line->text[i] == '\n')
 			break ;
 	}
-	//printf("out loop\n");
 	if (i == line->size)
 		return (NULL);
-	//printf("found \\n\n");
 	ret = (char *)malloc((i + 1) * sizeof(char));
 	if (!ret)
 		return (NULL);
-	//printf("i: %i\n", i);
 	j = i;
 	while (i + 1)
 	{
-		//printf("while %i\n", j - i);
-		//printf("\n%c\n", line->text[0]);
 		ret[j - i--] = line->text[0];
 		line->text++;
 		line->size--;
 		line->offset++;
 	}
-	//line->text--;
-	//if (line->size == 0)
-	//	free_line(line);
 	return (ret);
 }
 
@@ -149,12 +122,9 @@ char	*get_next_line(int fd)
 		i = -1;
 		while (++i < BUFFER_SIZE)
 		{
-			//write(1, &(buf[i]), 1);
 			append_char(next_line, buf[i]);
-			//printf("size: %i, text:%s\n", next_line->size, next_line->text);
 			if (buf[i] == '\n' && reading)
 			{
-				//printf("%s", next_line->text);
 				ret = cpytext(next_line);
 				next_line = renew_line(next_line);
 				reading = false;
