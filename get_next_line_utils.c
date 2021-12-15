@@ -6,19 +6,23 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 18:47:35 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/12/15 21:07:49 by lhumbert         ###   ########.fr       */
+/*   Updated: 2021/12/15 23:10:12 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+#include <stdio.h>
 
 int	ft_strlen(char *s)
 {
 	int	i;
 
 	i = 0;
+	//printf("test\n");
 	while (s[i])
 		i++;
+	//printf("test\n");
 	return (i);
 }
 
@@ -28,12 +32,14 @@ char	*stradd(char *s, char c)
 	int		len;
 	int		i;
 
-	if (!s)
-		return (NULL);
+	//if (!s)
+	//	return (NULL);
 	len = ft_strlen(s) + 2;
+	//printf("len: %i\n", len); 
 	ret = (char *)malloc(len * sizeof(char));
 	if (!ret)
 		return (NULL);
+	//printf("start loop\n");
 	i = -1;
 	while (s[++i])
 		ret[i] = s[i];

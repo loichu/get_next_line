@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	else
 		fd = open(argv[1], O_RDONLY);
 	
-	line_cnt = 204;
+	line_cnt = 1;
 	while (line_cnt--)
 	{
 		printf("Line %i:\n", ++line_nb);
