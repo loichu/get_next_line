@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/15 15:19:31 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/12/15 18:01:20 by lhumbert         ###   ########.fr       */
+/*   Created: 2021/12/15 18:47:35 by lhumbert          #+#    #+#             */
+/*   Updated: 2021/12/15 21:07:49 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdbool.h>
+#include "get_next_line.h"
 
-typedef struct s_buf {
-	int		fd;
-	int		max;
-	int		pos;
-	char	data[BUFFER_SIZE];
-}	t_buf;
+int	ft_strlen(char *s)
+{
+	int	i;
 
-char	*get_next_line(int fd);
-char	*stradd(char *s, char c);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
-#endif
+char	*stradd(char *s, char c)
+{
+	char	*ret;
+	int		len;
+	int		i;
+
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s) + 2;
+	ret = (char *)malloc(len * sizeof(char));
+	if (!ret)
+		return (NULL);
+	i = -1;
+	while (s[++i])
+		ret[i] = s[i];
+	free(s);
+	ret[i++] = c;
+	ret[i] = '\0';
+	return (ret);
+}
