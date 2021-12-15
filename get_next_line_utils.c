@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:10:43 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/12/15 15:49:03 by lhumbert         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:48:05 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ void	append_char(t_line *line, char c)
 	int		i;
 
 	line->size++;
-	new_text = (char *)malloc(line->size * sizeof(char));
+	new_text = (char *)malloc((line->size + 1) * sizeof(char));
 	if (!new_text)
 		return ;
 	i = -1;
 	while (++i < (line->size - 1))
 		new_text[i] = line->text[line->offset + i];
-	new_text[i] = c;
+	new_text[i++] = c;
+	new_text[i] = '\0';
 	free(line->text);
 	line->offset = 0;
 	line->text = new_text;
