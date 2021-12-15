@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-void	putline(char *l)
+static void	putline(char *l)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	else
 		fd = open(argv[1], O_RDONLY);
 	
-	line_cnt = 5;
+	line_cnt = 16;
 	while (line_cnt--)
 	{
 		printf("Line %i:\n", ++line_nb);
