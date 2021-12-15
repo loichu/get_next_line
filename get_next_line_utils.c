@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 18:47:35 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/12/15 23:10:12 by lhumbert         ###   ########.fr       */
+/*   Updated: 2021/12/15 23:30:16 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_strlen(char *s)
 {
 	int	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	//printf("test\n");
 	while (s[i])
@@ -43,7 +45,8 @@ char	*stradd(char *s, char c)
 	i = -1;
 	while (s[++i])
 		ret[i] = s[i];
-	free(s);
+	if (s)
+		free(s);
 	ret[i++] = c;
 	ret[i] = '\0';
 	return (ret);
