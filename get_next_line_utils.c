@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/15 14:10:43 by lhumbert          #+#    #+#             */
+/*   Updated: 2021/12/15 15:49:03 by lhumbert         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_line	*init_line()
+t_line	*init_line(void)
 {
 	t_line	*line;
 
@@ -17,7 +28,7 @@ t_line	*init_line()
 
 void	free_line(t_line *old_line)
 {
-	free(old_line->text - old_line->offset);
+	free(old_line->text);
 	free(old_line);
 }
 
@@ -30,7 +41,7 @@ t_line	*renew_line(t_line *old_line)
 void	append_char(t_line *line, char c)
 {
 	char	*new_text;
-	int	i;
+	int		i;
 
 	line->size++;
 	new_text = (char *)malloc(line->size * sizeof(char));
@@ -38,11 +49,9 @@ void	append_char(t_line *line, char c)
 		return ;
 	i = -1;
 	while (++i < (line->size - 1))
-	{
-		new_text[i] = line->text[i];
-	}
+		new_text[i] = line->text[line->offset + i];
 	new_text[i] = c;
-	free(line->text - line->offset);
+	free(line->text);
 	line->offset = 0;
 	line->text = new_text;
 }
@@ -50,7 +59,7 @@ void	append_char(t_line *line, char c)
 char	*cpytext(t_line *line)
 {
 	char	*ret;
-	int	i;
+	int		i;
 
 	ret = (char *)malloc(line->size * sizeof(char));
 	if (!ret)
