@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:50:01 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/12/16 12:04:59 by lhumbert         ###   ########.fr       */
+/*   Updated: 2021/12/16 16:53:26 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ char	*get_next_line(int fd)
 	static t_buf	buf = {.fd = -1};
 	char			*line;
 	char			c;
-
 
 	if (buf.fd != fd)
 		if (!init_buf(fd, &buf))
