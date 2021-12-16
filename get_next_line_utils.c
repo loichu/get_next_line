@@ -6,13 +6,11 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 18:47:35 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/12/16 11:45:18 by lhumbert         ###   ########.fr       */
+/*   Updated: 2021/12/16 12:04:56 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-#include <stdio.h>
 
 int	ft_strlen(char *s)
 {
@@ -21,10 +19,8 @@ int	ft_strlen(char *s)
 	if (!s)
 		return (0);
 	i = 0;
-	//printf("test\n");
 	while (s[i])
 		i++;
-	//printf("test\n");
 	return (i);
 }
 
@@ -34,20 +30,15 @@ char	*stradd(char *s, char c)
 	int		len;
 	int		i;
 
-	//if (!s)
-	//	return (NULL);
 	len = ft_strlen(s);
-	//printf("len: %i\n", len); 
 	ret = (char *)malloc((len + 2) * sizeof(char));
 	if (!ret)
 		return (NULL);
-	//printf("start loop\n");
 	i = -1;
 	while (++i < len)
 		ret[i] = s[i];
 	if (s)
 		free(s);
-	//printf("i: %i\n", i);
 	ret[i] = c;
 	ret[i + 1] = '\0';
 	return (ret);
