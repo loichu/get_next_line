@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 18:47:35 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/12/15 23:30:16 by lhumbert         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:45:18 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char	*stradd(char *s, char c)
 		ret[i] = s[i];
 	if (s)
 		free(s);
-	ret[i++] = c;
-	ret[i] = '\0';
+	//printf("i: %i\n", i);
+	ret[i] = c;
+	ret[i + 1] = '\0';
 	return (ret);
 }

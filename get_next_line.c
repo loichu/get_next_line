@@ -6,7 +6,7 @@
 /*   By: lhumbert <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 17:50:01 by lhumbert          #+#    #+#             */
-/*   Updated: 2021/12/15 23:35:21 by lhumbert         ###   ########.fr       */
+/*   Updated: 2021/12/16 11:44:56 by lhumbert         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ bool	init_buf(int fd, t_buf *buf)
 {
 	buf->fd = fd;
 	buf->max = read(buf->fd, buf->data, BUFFER_SIZE);
-	buf->pos = 0;
+	//printf("buf max: %i\n", buf->max);
+	buf->pos = -1;
 	return (buf->max >= 0);
 }
 
@@ -29,6 +30,7 @@ char	read_buf(t_buf *buf)
 		buf->max = read(buf->fd, buf->data, BUFFER_SIZE);
 		buf->pos = 0;
 	}
+	//printf("buf max: %i\n", buf->max);
 	if (!buf->max)
 		return (0);
 	return (buf->data[buf->pos]);
@@ -45,10 +47,11 @@ char	*get_next_line(int fd)
 		if (!init_buf(fd, &buf))
 			return (NULL);
 	c = read_buf(&buf);
+	//printf("test c: %x\n", c);
 	line = 0;
 	while (c)
 	{
-		//printf("Current line: %s\nAdding: %c\n", line, buf.data[buf.pos]);
+		//printf("Adding: %c\n", buf.data[buf.pos]);
 		line = stradd(line, c);
 		if (c == '\n')
 			return (line);
