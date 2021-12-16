@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	else
 		fd = open(argv[1], O_RDONLY);
 	
-	line_cnt = 204;
+	line_cnt = 1;
 	while (line_cnt--)
 	{
 		printf("Line %i:\n", ++line_nb);
@@ -33,8 +33,8 @@ int	main(int argc, char **argv)
 		putline(line);
 		free(line);
 	}
-	printf("pid: %ld, parent pid: %ld\n", (long)getpid(), (long)getppid());
-	while (1)
-		printf("");
+	//printf("pid: %ld, parent pid: %ld\n", (long)getpid(), (long)getppid());
+	//while (1)
+	//	printf("");
 	return (0);
 }
