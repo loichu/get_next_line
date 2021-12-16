@@ -29,6 +29,8 @@ char	read_buf(t_buf *buf)
 		buf->max = read(buf->fd, buf->data, BUFFER_SIZE);
 		buf->pos = 0;
 	}
+	if (!buf->max)
+		return (0);
 	return (buf->data[buf->pos]);
 }
 

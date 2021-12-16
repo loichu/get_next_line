@@ -36,14 +36,14 @@ char	*stradd(char *s, char c)
 
 	//if (!s)
 	//	return (NULL);
-	len = ft_strlen(s) + 2;
+	len = ft_strlen(s);
 	//printf("len: %i\n", len); 
-	ret = (char *)malloc(len * sizeof(char));
+	ret = (char *)malloc((len + 2) * sizeof(char));
 	if (!ret)
 		return (NULL);
 	//printf("start loop\n");
 	i = -1;
-	while (s[++i])
+	while (++i < len)
 		ret[i] = s[i];
 	if (s)
 		free(s);

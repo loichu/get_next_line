@@ -33,8 +33,8 @@ int	main(int argc, char **argv)
 		putline(line);
 		free(line);
 	}
-	printf("pid: %ld, parent pid: %ld\n", (long)getpid(), (long)getppid());
-	while (1)
-		printf("");
+	//printf("pid: %ld, parent pid: %ld\n", (long)getpid(), (long)getppid());
+	//while (1)
+	//	printf("");
 	return (0);
 }
